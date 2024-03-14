@@ -13,7 +13,7 @@ button.addEventListener('click', () => {
         return
     }
 
-    let output = `Попытка ответа: ${++count}. Ваш ответ: ${input.value}`;
+    let output = `Попытка ответа: ${++count}. Ваш ответ: ${input.value}.`;
 
     if (count % 5 == 0) {
         responseBlock.innerHTML = 'Ой, что-то произошло: Код ответа: 500';
