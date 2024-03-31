@@ -1,14 +1,14 @@
 "use strict";
 
-let count = 1;
+let count = 0;
 let question
 
 const header = document.querySelector('h2');
 const description = document.querySelector('.description');
+const input = document.querySelector('#inputField');
 const startButton = document.querySelector('#startButton');
 const submitButton = document.querySelector('#submitButton');
 const nextButton = document.querySelector('#nextButton');
-const input = document.querySelector('#inputField');
 const responseBlock = document.querySelector('#response');
 
 setGameDescription()
@@ -29,7 +29,7 @@ submitButton.addEventListener('click', () => {
 
     if (input.value === '') {
         input.style['border-color'] = 'red';
-        printMessage('Введите ваш ответ!');
+        printResponse('Введите ваш ответ!', 'red')
         return
     }
 
@@ -37,22 +37,32 @@ submitButton.addEventListener('click', () => {
     nextButton.style['display'] = 'inline-block';
     input.disabled = true
 
-    count % 4 == 0
-        ? printResponse('Ой, что-то произошло: Код ответа: 500')
-        : printResponse(`Ваш ответ: ${input.value}. <br> Правильный ответ: ${question.a}`);
+    ++count
+    if (count % 4 == 0) {
+        printResponse(
+            'Ой, что-то произошло: Код ответа: 500',
+            'red',
+        )
+        return;
+    }
+
+    printResponse(
+        `Ваш ответ: ${input.value}. <br> Правильный ответ: ${question.a}`,
+        '#2196F3',
+    );
 });
 
-function printResponse(msg) {
-    printMessage(msg)
-    ++count
+function clearErrorStyle() {
+    input.style.removeProperty('border-color');
 }
 
 function printMessage(msg) {
     responseBlock.innerHTML = msg
 }
 
-function clearErrorStyle() {
-    input.style.removeProperty('border-color');
+function printResponse(msg, color) {
+    responseBlock.style['border'] = `1px solid ${color}`;
+    printMessage(msg)
 }
 
 function setGameDescription() {
