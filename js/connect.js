@@ -23,37 +23,43 @@ startButton.addEventListener('click', () => {
     setQuestion()
 })
 
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click', async () => {
     clearErrorStyle();
-    responseBlock.style['display'] = 'block'
 
     if (input.value === '') {
+        responseBlock.style['display'] = 'block'
+
         input.style['border-color'] = 'red';
         printResponse('Введите ваш ответ!', 'red')
         return
     }
 
     submitButton.style['display'] = 'none';
-    nextButton.style['display'] = 'inline-block';
     input.disabled = true
 
-    ++count
-    if (count % 4 == 0) {
-        const errorResponse = getErrorMEssage()
-        printResponse(
-            `${errorResponse.text} Код ответа: ${errorResponse.code}`,
-            errorResponse.color,
-        )
-        return;
-    }
+    await setTimeout(() => {
+        responseBlock.style['display'] = 'block'
+        nextButton.style['display'] = 'inline-block';
 
-    printResponse(
-        `Ваш ответ: ${input.value}. <br> Правильный ответ: ${question.a}`,
-        '#2196F3',
-    );
+        ++count
+        if (count % 4 == 0) {
+            const errorResponse = getErrorMEssage()
+            printResponse(
+                `${errorResponse.text} Код ответа: ${errorResponse.code}`,
+                errorResponse.color,
+            )
+            return;
+        }
+
+        printResponse(
+            `Ваш ответ: ${input.value}. <br> Правильный ответ: ${question.a}`,
+            '#2196F3',
+        );
+    }, 1000)
 });
 
 function clearErrorStyle() {
+    responseBlock.style['display'] = 'none';
     input.style.removeProperty('border-color');
 }
 
