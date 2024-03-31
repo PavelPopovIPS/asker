@@ -1,6 +1,11 @@
 #inputField,
 #submitButton,
 #nextButton,
-#response {
+#response,
+.loader {
     display: none;
+}
+
+.loader>img {
+    height: 50px;
 }

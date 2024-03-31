@@ -6,6 +6,7 @@ let question
 const header = document.querySelector('h2');
 const description = document.querySelector('.description');
 const input = document.querySelector('#inputField');
+const loader = document.querySelector('.loader');
 const startButton = document.querySelector('#startButton');
 const submitButton = document.querySelector('#submitButton');
 const nextButton = document.querySelector('#nextButton');
@@ -36,13 +37,16 @@ submitButton.addEventListener('click', async () => {
 
     submitButton.style['display'] = 'none';
     input.disabled = true
+    loader.style['display'] = 'inline-block';
 
     await setTimeout(() => {
+        loader.style['display'] = 'none';
+
         responseBlock.style['display'] = 'block'
         nextButton.style['display'] = 'inline-block';
 
         ++count
-        if (count % 4 == 0) {
+        if (count % 3 == 0) {
             const errorResponse = getErrorMEssage()
             printResponse(
                 `${errorResponse.text} Код ответа: ${errorResponse.code}`,
