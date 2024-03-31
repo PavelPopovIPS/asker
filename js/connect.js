@@ -5,12 +5,18 @@ let question
 
 const header = document.querySelector('h2');
 const description = document.querySelector('.description');
-const submitButton = document.querySelector('#submitButton');
 const startButton = document.querySelector('#startButton');
+const submitButton = document.querySelector('#submitButton');
+const nextButton = document.querySelector('#nextButton');
 const input = document.querySelector('#inputField');
 const responseBlock = document.querySelector('#response');
 
 setGameDescription()
+
+nextButton.addEventListener('click', () => {
+    setDefaultStyle();
+    setQuestion()
+})
 
 startButton.addEventListener('click', () => {
     setDefaultStyle();
@@ -19,6 +25,7 @@ startButton.addEventListener('click', () => {
 
 submitButton.addEventListener('click', () => {
     clearErrorStyle();
+    responseBlock.style['display'] = 'block'
 
     if (input.value === '') {
         input.style['border-color'] = 'red';
@@ -26,12 +33,13 @@ submitButton.addEventListener('click', () => {
         return
     }
 
-    if (count % 4 == 0) {
-        printResponse('Ой, что-то произошло: Код ответа: 500');
-        return
-    }
+    submitButton.style['display'] = 'none';
+    nextButton.style['display'] = 'inline-block';
+    input.disabled = true
 
-    printResponse(`Попытка ответа: ${count}. <br> Ваш ответ: ${input.value}. <br> Правильный ответ: ${question.a}`);
+    count % 4 == 0
+        ? printResponse('Ой, что-то произошло: Код ответа: 500')
+        : printResponse(`Ваш ответ: ${input.value}. <br> Правильный ответ: ${question.a}`);
 });
 
 function printResponse(msg) {
@@ -53,10 +61,14 @@ function setGameDescription() {
 }
 
 function setDefaultStyle() {
-    startButton.style['display'] = 'none';
     description.style['display'] = 'none';
+    startButton.style['display'] = 'none';
+    nextButton.style['display'] = 'none';
+    responseBlock.style['display'] = 'none';
 
+    input.disabled = false
     input.style['display'] = 'inline-block';
+    input.value = '';
     submitButton.style['display'] = 'inline-block';
 }
 

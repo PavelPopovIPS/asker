@@ -1,7 +1,6 @@
-#inputField {
-    display: none;
-}
-
-#submitButton {
+#inputField,
+#submitButton,
+#nextButton,
+#response {
     display: none;
 }
