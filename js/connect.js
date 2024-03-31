@@ -39,9 +39,10 @@ submitButton.addEventListener('click', () => {
 
     ++count
     if (count % 4 == 0) {
+        const errorResponse = getErrorMEssage()
         printResponse(
-            'Ой, что-то произошло: Код ответа: 500',
-            'red',
+            `${errorResponse.text} Код ответа: ${errorResponse.code}`,
+            errorResponse.color,
         )
         return;
     }
@@ -102,4 +103,9 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+function getErrorMEssage() {
+    shuffle(errorMessages);
+    return errorMessages[0];
 }
