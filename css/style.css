@@ -81,7 +81,8 @@ button {
         max-width: 920px;
     }
 
-    .inputWrapper {
+    .inputWrapper,
+    .headerWrapper {
         width: 95%;
     }
 
