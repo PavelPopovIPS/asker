@@ -1,5 +1,10 @@
+@font-face {
+    font-family: "Montserrat1";
+    src: url(../font/fnt.ttf) format("truetype");
+}
+
 body {
-    font-family: Montserrat, "Sans Serif", Ubuntu, "Droid Sans", Roboto;
+    font-family: Montserrat1;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -64,4 +69,19 @@ button {
     margin-top: 5%;
     padding: 30px 50px;
     border-radius: 5px;
+}
+
+@media screen and (max-width : 600px) {
+    h2 {
+        /* width: 98%; */
+    }
+
+    .description {
+        width: 95%;
+        max-width: 920px;
+    }
+
+    .inputWrapper {
+        width: 95%;
+    }
 }
