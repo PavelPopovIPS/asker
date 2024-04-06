@@ -72,10 +72,6 @@ button {
 }
 
 @media screen and (max-width : 600px) {
-    h2 {
-        /* width: 98%; */
-    }
-
     .description {
         width: 95%;
         max-width: 920px;
