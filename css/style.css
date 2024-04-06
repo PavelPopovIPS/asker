@@ -84,4 +84,19 @@ button {
     .inputWrapper {
         width: 95%;
     }
+
+    .buttonWrapper {
+        position: absolute;
+        bottom: 25px;
+        width: 95%
+    }
+
+    button {
+        width: 100%;
+    }
+
+    #response {
+        padding: 30px 25px;
+        width: 80%
+    }
 }
