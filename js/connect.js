@@ -72,7 +72,7 @@ function printMessage(msg) {
 }
 
 function printResponse(msg, color) {
-    responseBlock.style['border'] = `1px solid ${color}`;
+    responseBlock.style['border'] = `2px solid ${color}`;
     printMessage(msg)
 }
 
